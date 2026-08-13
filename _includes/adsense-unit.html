@@ -1,0 +1,19 @@
+{%- comment -%}
+  Yazı içine reklam eklemek için kullanılır.
+  Kullanım: {% include adsense-unit.html slot="1234567890" %}
+  "slot" değerini AdSense panelinden aldığın ad unit ID'siyle değiştir.
+  site.adsense_pub_id boşsa reklam hiç render edilmez (AdSense onaylanana kadar güvenli).
+{%- endcomment -%}
+{% if site.adsense_pub_id %}
+<div class="adsense-unit" style="margin: 2em 0; text-align: center;">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="{{ site.adsense_pub_id }}"
+       data-ad-slot="{{ include.slot }}"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+</div>
+{% endif %}
