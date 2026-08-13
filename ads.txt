@@ -6,4 +6,4 @@
 # Bu dosya https://kullaniciadin.github.io/ads.txt adresinden erişilebilir
 # olmalı - Jekyll bunu otomatik olarak site kökünde yayınlar, ekstra ayar gerekmez.
 
-google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-7972827481321425, DIRECT, f08c47fec0942fa0
