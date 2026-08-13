@@ -1,15 +1,15 @@
 # Kod Notları
 
-> Yazılım geliştirme, teknoloji trendleri ve pratik notlar üzerine bir blog. Git, REST API tasarımı, DevOps araçları ve temiz kod pratikleri gibi konularda pratik, uygulanabilir yazılar içerir.
+> Yazılım geliştirme, teknoloji trendleri ve pratik notlar üzerine bir blog. Git, REST API tasarımı, DevOps araçları ve temiz kod pratikleri gibi konularda pratik, uygulanabilir yazılar i�[...]
 
 ## Docs
 
-- [Git ile Çalışırken Bilmeniz Gereken Temel Komutlar](https://ADevLearner.github.io/araçlar/git-ile-calisirken-bilmeniz-gereken-temel-komutlar/): Günlük iş akışında en sık kullanılan Git komutları, branch yönetimi ve commit düzeltme.
-- [REST API Tasarlarken Dikkat Edilmesi Gereken 5 Nokta](https://ADevLearner.github.io/backend/rest-api-tasarlarken-dikkat-edilmesi-gereken-5-nokta/): Kaynak isimlendirme, HTTP durum kodları, versiyonlama, sayfalama ve hata formatı standartları.
-- [Docker Nedir ve Neden Kullanmalısınız?](https://ADevLearner.github.io/devops/docker-nedir-ve-neden-kullanmalisiniz/): Konteynerleştirmenin sanal makinelerden farkı ve ne zaman gerçekten fayda sağladığı.
-- [Okunaklı Kod Yazmanın Hız Kazandırdığı Anlar](https://ADevLearner.github.io/yazılım-pratikleri/okunakli-kod-yazmanin-hiz-kazandirdigi-anlar/): İsimlendirme, fonksiyon boyutu ve yorum kullanımı üzerine pratik öneriler.
+- [Git ile Çalışırken Bilmeniz Gereken Temel Komutlar](https://adevlearner.github.io/araçlar/git-temel-komutlar/): Günlük iş akışında en sık kullanılan Git[...]
+- [REST API Tasarlarken Dikkat Edilmesi Gereken 5 Nokta](https://adevlearner.github.io/backend/rest-api-tasarim-ipuclari/): Kaynak isimlendirme, HTTP durum kodları, versiyo[...]
+- [Docker Nedir ve Neden Kullanmalısınız?](https://adevlearner.github.io/devops/docker-neden-kullanmaliyiz/): Konteynerleştirmenin sanal makinelerden farkı ve ne zaman gerçekten fayda[...]
+- [Okunaklı Kod Yazmanın Hız Kazandırdığı Anlar](https://adevlearner.github.io/yazılım-pratikleri/okunakli-kod-yazma/): İsimlendirme, fonksiyon boyutu ve yorum kull[...]
 
 ## Optional
 
-- [Sitemap](https://ADevLearner.github.io/sitemap.xml): Sitenin tüm sayfalarının XML haritası.
-- [RSS Feed](https://ADevLearner.github.io/feed.xml): Yeni yazıları takip etmek için RSS beslemesi.
+- [Sitemap](https://adevlearner.github.io/sitemap.xml): Sitenin tüm sayfalarının XML haritası.
+- [RSS Feed](https://adevlearner.github.io/feed.xml): Yeni yazıları takip etmek için RSS beslemesi.
