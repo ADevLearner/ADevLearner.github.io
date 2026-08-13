@@ -1,13 +1,31 @@
 # Kod Notları
 
-> Yazılım geliştirme, teknoloji trendleri ve pratik notlar üzerine bir blog. Git, REST API tasarımı, DevOps araçları ve temiz kod pratikleri gibi konularda pratik, uygulanabilir yazılar i�[...]
+> Yazılım geliştirme, teknoloji trendleri ve pratik notlar üzerine bir blog. Git, veritabanları, backend/frontend geliştirme, DevOps, algoritmalar ve yazılım pratikleri gibi konularda pratik, uygulanabilir yazılar içerir.
 
 ## Docs
 
-- [Git ile Çalışırken Bilmeniz Gereken Temel Komutlar](https://adevlearner.github.io/araçlar/git-temel-komutlar/): Günlük iş akışında en sık kullanılan Git[...]
-- [REST API Tasarlarken Dikkat Edilmesi Gereken 5 Nokta](https://adevlearner.github.io/backend/rest-api-tasarim-ipuclari/): Kaynak isimlendirme, HTTP durum kodları, versiyo[...]
-- [Docker Nedir ve Neden Kullanmalısınız?](https://adevlearner.github.io/devops/docker-neden-kullanmaliyiz/): Konteynerleştirmenin sanal makinelerden farkı ve ne zaman gerçekten fayda[...]
-- [Okunaklı Kod Yazmanın Hız Kazandırdığı Anlar](https://adevlearner.github.io/yazılım-pratikleri/okunakli-kod-yazma/): İsimlendirme, fonksiyon boyutu ve yorum kull[...]
+- [Git ile Çalışırken Bilmeniz Gereken Temel Komutlar](https://adevlearner.github.io/araçlar/git-temel-komutlar/): Günlük iş akışında en sık kullanılan Git komutları, branch yönetimi ve commit düzeltme.
+- [Takım Halinde Çalışırken Git Branch Stratejisi Seçmek](https://adevlearner.github.io/araçlar/git-branch-stratejileri/): Git Flow ve Trunk-Based Development karşılaştırması.
+- [REST API Tasarlarken Dikkat Edilmesi Gereken 5 Nokta](https://adevlearner.github.io/backend/rest-api-tasarim-ipuclari/): Kaynak isimlendirme, HTTP durum kodları, versiyonlama, sayfalama ve hata formatı standartları.
+- [Caching Stratejileri: Uygulamanızı Nasıl Hızlandırır?](https://adevlearner.github.io/backend/caching-stratejileri/): Tarayıcı ve sunucu tarafı önbellekleme, cache invalidation sorunu.
+- [Docker Nedir ve Neden Kullanmalısınız?](https://adevlearner.github.io/devops/docker-neden-kullanmaliyiz/): Konteynerleştirmenin sanal makinelerden farkı ve ne zaman gerçekten fayda sağladığı.
+- [Ortam Değişkenlerini Doğru Yönetmek](https://adevlearner.github.io/devops/ortam-degiskenleri-yonetimi/): API anahtarları ve gizli bilgileri .env ile güvenli yönetme.
+- [Cron Job ile Zamanlanmış Görevleri Otomatikleştirmek](https://adevlearner.github.io/devops/cron-job-zamanlanmis-gorevler/): Linux crontab söz dizimi ve pratik örnekler.
+- [CI/CD Pipeline Nedir? Temel Kavramlar](https://adevlearner.github.io/devops/cicd-pipeline-temelleri/): Continuous Integration ve Continuous Deployment'ın temelleri.
+- [Okunaklı Kod Yazmanın Hız Kazandırdığı Anlar](https://adevlearner.github.io/yazılım-pratikleri/okunakli-kod-yazma/): İsimlendirme, fonksiyon boyutu ve yorum kullanımı üzerine pratik öneriler.
+- [Yapıcı Kod İncelemesi İçin 5 Pratik Kural](https://adevlearner.github.io/yazılım-pratikleri/kod-inceleme-code-review-pratikleri/): Code review sürecini verimli ve yapıcı tutmanın yolları.
+- [Regex'e Giriş: Karmaşık Görünen Söz Dizimini Çözmek](https://adevlearner.github.io/programlama/regex-temelleri/): Regular expression'ların temel yapı taşları ve pratik kalıplar.
+- [console.log'dan Öteye: Etkili Debugging Teknikleri](https://adevlearner.github.io/programlama/debugging-teknikleri/): Debugger kullanımı, binary search yaklaşımı, rubber duck debugging.
+- [Big O Notasyonu: Algoritma Karmaşıklığını Anlamak](https://adevlearner.github.io/programlama/algoritma-karmasikligi-big-o/): O(1), O(n), O(n²) ve O(log n) karmaşıklık sınıflarının pratik örnekleri.
+- [Stack ve Queue: İki Temel Veri Yapısının Farkı](https://adevlearner.github.io/programlama/stack-queue-veri-yapilari/): LIFO ve FIFO mantığıyla çalışan veri yapılarının gerçek dünya kullanım alanları.
+- [Python'da List Comprehension Ne Zaman Kullanılmalı?](https://adevlearner.github.io/python/python-list-comprehension/): Klasik for döngüsüne göre avantajlar ve okunabilirlik sınırları.
+- [SQL JOIN Çeşitleri: INNER, LEFT, RIGHT ve FULL Farkları](https://adevlearner.github.io/veritabani/sql-join-cesitleri/): Dört temel JOIN türünün ne zaman hangi sonucu döndürdüğü.
+- [Veritabanı İndeksleme Nasıl Çalışır?](https://adevlearner.github.io/veritabani/veritabani-indeksleme/): Index'lerin sorgu hızına etkisi ve gereksiz index'lerin bedeli.
+- [Lazy Loading ile Sayfa Açılış Hızını Artırmak](https://adevlearner.github.io/frontend/lazy-loading-web-performansi/): Görsel ve bileşenlerin ihtiyaç anında yüklenmesi.
+- [Web Erişilebilirliği (a11y) Neden Görmezden Gelinmemeli?](https://adevlearner.github.io/frontend/erisebilirlik-a11y-temelleri/): Ekran okuyucu kullanıcıları için erişilebilirlik pratikleri.
+- [Her Geliştiricinin Bilmesi Gereken Linux Terminal Komutları](https://adevlearner.github.io/araçlar/linux-terminal-komutlari/): Dosya sistemi, süreç yönetimi ve yetki komutlarının özeti.
+- [JSON mu YAML mı? Yapılandırma Dosyaları İçin Doğru Seçim](https://adevlearner.github.io/araçlar/json-vs-yaml/): İki formatın okunabilirlik ve kullanım alanı karşılaştırması.
+- [Markdown'ı Etkili Kullanmak İçin Pratik Bir Rehber](https://adevlearner.github.io/araçlar/markdown-yazim-rehberi/): Başlık, vurgu, liste, kod bloğu ve tablo söz dizimi.
 
 ## Optional
 
