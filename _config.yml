@@ -20,11 +20,11 @@ direction                : "ltr" # "ltr" (default), "rtl" # set the direction of
 title                    : "Kod Notları"
 title_separator          : "-"
 subtitle                 : "Yazılım, teknoloji ve geliştirici notları"
-name                     : "SENIN_ADIN"
+name                     : "ADevLearner"
 description              : "Yazılım geliştirme, teknoloji trendleri ve pratik notlar üzerine bir blog."
-url                      : "https://KULLANICI_ADIN.github.io" # KULLANICI_ADIN yerine kendi GitHub kullanıcı adını yaz
+url                      : "https://ADevLearner.github.io" # KULLANICI_ADIN yerine kendi GitHub kullanıcı adını yaz
 baseurl                  : # kök domainde yayınlıyorsan boş bırak
-repository               : "KULLANICI_ADIN/KULLANICI_ADIN.github.io" # kendi kullanıcı adınla değiştir
+repository               : "ADevLearner/ADevLearner.github.io" # kendi kullanıcı adınla değiştir
 
 # Google AdSense
 # AdSense onayı aldıktan sonra buraya "ca-pub-XXXXXXXXXXXXXXXX" formatındaki
