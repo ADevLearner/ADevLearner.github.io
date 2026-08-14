@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", "catppuccin_latte", "catppuccin_mocha"
+minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", "catppuccin_latte", "catppuccin_mocha"
 
 # Site Settings
 locale                   : "tr-TR"
@@ -20,11 +20,11 @@ direction                : "ltr" # "ltr" (default), "rtl" # set the direction of
 title                    : "Kod Notları"
 title_separator          : "-"
 subtitle                 : "Yazılım, teknoloji ve geliştirici notları"
-name                     : "ADevLearner"
+name                     : "SENIN_ADIN"
 description              : "Yazılım geliştirme, teknoloji trendleri ve pratik notlar üzerine bir blog."
-url                      : "https://ADevLearner.github.io" # KULLANICI_ADIN yerine kendi GitHub kullanıcı adını yaz
+url                      : "https://KULLANICI_ADIN.github.io" # KULLANICI_ADIN yerine kendi GitHub kullanıcı adını yaz
 baseurl                  : # kök domainde yayınlıyorsan boş bırak
-repository               : "ADevLearner/ADevLearnergithub.io" # kendi kullanıcı adınla değiştir
+repository               : "KULLANICI_ADIN/KULLANICI_ADIN.github.io" # kendi kullanıcı adınla değiştir
 
 # Google AdSense
 # AdSense onayı aldıktan sonra buraya "ca-pub-XXXXXXXXXXXXXXXX" formatındaki
@@ -120,21 +120,16 @@ analytics:
 
 # Site Author
 author:
-  name             : "adevlearner"
+  name             : "ADevLearner"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
-  location         : "Somewhere"
+  bio              : "Yazılım geliştirme ve teknoloji üzerine öğrendiklerimi not ediyorum."
+  location         : "Türkiye"
   email            :
   # fediverse      : "@you@instance.social"  # used for fediverse:creator meta tag
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-square-envelope"
-      # url: "mailto:your.name@email.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-square-x-twitter"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/ADevLearner"
       # url: "https://twitter.com/"
     - label: "Facebook"
       icon: "fab fa-fw fa-square-facebook"

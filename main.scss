@@ -1,0 +1,57 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+search: false
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+
+/* ==========================================================================
+   Özel minimal / bol boşluklu düzenlemeler
+   ========================================================================== */
+
+body {
+  background-color: #fafafa;
+}
+
+.page__content {
+  font-size: 1.05em;
+  line-height: 1.8;
+
+  p {
+    margin-bottom: 1.6em;
+  }
+
+  h2, h3, h4 {
+    margin-top: 2.2em;
+    margin-bottom: 0.8em;
+    font-weight: 600;
+  }
+}
+
+.masthead {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: none;
+}
+
+.page__title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.archive__item {
+  margin-bottom: 3em;
+}
+
+.archive__item-excerpt {
+  line-height: 1.7;
+}
+
+@media (min-width: 64em) {
+  .page {
+    padding-right: 2em;
+  }
+}
