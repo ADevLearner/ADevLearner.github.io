@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Etkili Code Review (Kod İnceleme) Nasıl Yapılır? En İyi Pratikler ve Süreçler"
 date: 2026-07-25 10:00:00 +0300
 categories: [gelistirme]
