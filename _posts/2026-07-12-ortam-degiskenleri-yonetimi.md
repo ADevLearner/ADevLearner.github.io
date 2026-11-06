@@ -1,55 +1,76 @@
 ---
-title: "Ortam Değişkenlerini (Environment Variables) Doğru Yönetmek"
-date: 2026-07-12
-categories:
-  - devops
-tags:
-  - env
-  - guvenlik
-excerpt: "API anahtarları ve gizli bilgileri kod içine gömmeden yönetmenin standart yolları."
+layout: post
+title: "Ortam Değişkenleri (Environment Variables) Yönetimi ve Güvenlik En İyi Pratikleri"
+date: 2026-07-12 10:00:00 +0300
+categories: [guvenlik]
+tags: [env, guvenlik, devops, konfigurasyon, api-key]
+excerpt: "Uygulama hassas verilerini ve konfigürasyonlarını koddan ayırmanın yolları, .env kullanımı ve üretim ortamında güvenlik pratikleri."
 ---
 
-API anahtarı, veritabanı şifresi gibi hassas bilgileri doğrudan kod içine yazmak
-en yaygın güvenlik hatalarından biridir. Ortam değişkenleri bu sorunu çözer.
+Modern yazılım geliştirme süreçlerinde karşılaşılan en büyük güvenlik açıklarından biri, veritabanı şifreleri, API anahtarları (`API Keys`) ve gizli token'ların doğrudan kaynak kodun içine yazılmasıdır (hardcoding). Bu tür hassas bilgilerin kaynak kodla birlikte GitHub gibi açık veya kapalı depolama alanlarına yüklenmesi, ciddi veri sızıntılarına yol açabilir.
 
-## Neden Kod İçine Yazmamalı?
+Bu sorunu kökten çözmek için **Ortam Değişkenleri (Environment Variables)** kullanılır. Bu yazımızda, ortam değişkenlerinin mantığını, `.env` dosyalarının nasıl yönetilmesi gerektiğini ve üretim ortamındaki güvenlik pratiklerini inceleyeceğiz.
 
-Kod bir GitHub reposuna push edildiğinde, içindeki her şey (özellikle geçmişteki
-commit'ler) potansiyel olarak herkese açık hale gelebilir. Bir şifre bir kez
-commit edilirse, sonradan silinse bile git geçmişinde kalır.
+---
 
-## .env Dosyası Kullanımı
+## 1. Ortam Değişkeni Nedir ve Neden Kullanılır?
 
-```bash
-# .env dosyası
-DATABASE_URL=postgres://kullanici:sifre@localhost:5432/db
-API_KEY=gizli_anahtar_buraya
+Ortam değişkeni, çalışan işletim sisteminin veya uygulamanın çalıştığı konteynerin ortamından okuduğu dinamik bir named-value (isim-değer) çiftidir. 
+
+### Kod İçinde Hardcoding Yapmanın Riskleri:
+* **Güvenlik Açığı:** Kodunuzu bir ekip arkadaşınızla paylaştığınızda veya açık kaynaklı hale getirdiğinizde tüm gizli anahtarlar ifşa olur.
+* **Esneklik Eksikliği:** Geliştirme (development), test (staging) ve canlı (production) ortamları için farklı veritabanı adresleri kullanmak gerektiğinde her defasında kodu değiştirmek imkansızdır.
+
+Ortam değişkenleri sayesinde kodunuz aynı kalır; sadece değişen ortama göre değişkenlerin değerleri (örn. `DATABASE_URL`) farklı okunur.
+
+---
+
+## 2. Projelerde `.env` Dosyası Kullanımı
+
+Yerel geliştirme (local development) ortamında bu değişkenleri yönetmek için genellikle kök dizinde bir `.env` dosyası oluşturulur.
+
+### Tipik Bir `.env` Dosyası Örneği:
+
+```env
+PORT=3000
+NODE_ENV=development
+DATABASE_URL=postgres://kullanici:sifre@localhost:5432/veritabani
+STRIPE_API_KEY=sk_test_51Mz...
 ```
+Kod İçinden Okuma (Node.js Örneği):
+Popüler dotenv kütüphanesini kullanarak bu değişkenleri güvenle projenize dahil edebilirsiniz:
 
-Bu dosya proje koduyla birlikte push edilmemeli — `.gitignore` dosyasına
-`.env` satırını eklemek ilk yapılması gereken şey.
-
-```bash
-# .gitignore
-.env
-```
-
-## Kod İçinde Kullanım (Node.js örneği)
-
-```javascript
+```JavaScript
 require('dotenv').config();
-const apiKey = process.env.API_KEY;
+
+const port = process.env.PORT || 8080;
+const dbUrl = process.env.DATABASE_URL;
+
+console.log(`Sunucu ${port} portunda başlatılıyor...`);
 ```
+### 3. Altın Kural: .gitignore Unutulmamalıdır!
+Ortam değişkenleri dosyanız (.env) asla ama asla sürüm kontrol sistemine (Git) gönderilmemelidir.
 
-## Production Ortamında
+Projenizin kök dizinindeki .gitignore dosyasına mutlaka .env eklenmelidir:
 
-Yerel geliştirmede `.env` dosyası kullanılsa da, production ortamında bu değerler
-genelde hosting sağlayıcının (Vercel, Heroku, AWS vb.) panel üzerinden ayarlanan
-ortam değişkenleri aracılığıyla enjekte edilir — dosya olarak sunucuya hiç
-yüklenmez.
+```Code snippet
+# Hassas konfigürasyon dosyaları
+.env
+.env.local
+.env.production
+```
+Bunun yerine, geliştiricilere rehber olması için projeye örnek bir .env.example dosyası eklenir (bu dosyada sadece değişken isimleri yer alır, gerçek gizli şifreler yazılmaz).
 
-## Ekstra Güvenlik
+## 4. Üretim Ortamında (Production) Güvenlik Pratikleri
+Canlı sunucularda veya bulut platformlarında (AWS, Heroku, Vercel, Docker) .env dosyası fiziksel olarak sunucuya kopyalanmak yerine şu yöntemlerle yönetilmelidir:
 
-Takım halinde çalışıyorsanız `.env.example` adında, gerçek değerler olmadan
-sadece hangi değişkenlerin gerektiğini gösteren bir örnek dosya bırakmak yeni
-katılan geliştiriciler için faydalıdır.
+Bulut Servislerinin Secret Yöneticileri: AWS Secrets Manager, Google Cloud Secret Manager veya GitHub Actions Secrets gibi şifrelenmiş alanlar kullanılmalıdır.
+
+Docker Ortam Değişkenleri: Konteyner ayağa kalkarken -e parametresi veya docker-compose.yml içindeki environment blokları ile güvenli şekilde enjekte edilmelidir.
+
+Erişim Yetkilendirmesi (Principle of Least Privilege): Uygulamanın kullandığı veritabanı kullanıcısının yetkileri sadece gerektiği kadar olmalı, tüm veritabanı üzerinde tam yetkili (SUPERUSER) hesaplar uygulama içinde kullanılmamalıdır.
+
+Sonuç
+Ortam değişkenleri yönetimi, hem projelerinizin farklı ortamlara kolayca uyum sağlamasını (portability) hem de güvenlik standartlarının üst seviyede tutulmasını sağlar. Küçük bir dikkat eksikliği büyük sızıntılara yol açabileceğinden, .env dosyalarının gizliliğine her zaman özen gösterilmelidir.
+
+Bir sonraki yazımızda görüşmek üzere!
