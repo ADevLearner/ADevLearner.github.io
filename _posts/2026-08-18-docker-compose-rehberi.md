@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Docker Compose Nedir? Çoklu Konteyner Yönetimi ve Pratik Rehber"
 date: 2026-08-18 10:00:00 +0300
 categories: [devops]
