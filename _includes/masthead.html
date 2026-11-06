@@ -40,12 +40,14 @@
 
 <style>
   .custom-masthead {
-    background-color: #0f0f1a;
-    border-bottom: 1px solid rgba(249, 115, 22, 0.2);
-    padding: 15px 30px;
+    background-color: #0f0f1a !important;
+    border-bottom: 1px solid rgba(249, 115, 22, 0.3);
+    padding: 20px 30px;
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   .custom-masthead .masthead__inner-wrap {
@@ -57,64 +59,73 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    background: transparent !important;
   }
   
   .custom-masthead .site-title {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #ffffff;
-    gap: 12px;
+    color: #ffffff !important;
+    gap: 14px;
   }
   
   .custom-masthead .logo-icon {
     background: linear-gradient(135deg, #f97316, #fbbf24);
     color: #0f0f1a;
     font-weight: bold;
-    padding: 6px 10px;
-    border-radius: 8px;
-    font-size: 14pt;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 15pt;
     font-family: monospace;
   }
   
   .custom-masthead .site-title-text strong {
     font-size: 16pt;
-    color: #ffffff;
+    color: #ffffff !important;
     display: block;
     line-height: 1.2;
   }
   
   .custom-masthead .site-subtitle {
-    font-size: 9pt;
-    color: #94a3b8;
+    font-size: 9.5pt;
+    color: #94a3b8 !important;
     display: block;
   }
   
   .custom-masthead .visible-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 25px;
     margin: 0;
     padding: 0;
+    align-items: center;
+    background: transparent !important;
   }
   
   .custom-masthead .masthead__menu-item a {
-    color: #cbd5e1;
+    color: #e2e8f0 !important;
     text-decoration: none;
     font-weight: 500;
     font-size: 11pt;
     transition: color 0.2s ease;
+    background: transparent !important;
   }
   
   .custom-masthead .masthead__menu-item a:hover {
-    color: #f97316;
+    color: #f97316 !important;
+  }
+  
+  .custom-masthead .header-actions {
+    display: flex;
+    align-items: center;
   }
   
   .custom-masthead .quick-start-btn {
     background: linear-gradient(135deg, #f97316, #ea580c);
-    color: #ffffff;
-    padding: 8px 16px;
+    color: #ffffff !important;
+    padding: 10px 18px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
@@ -126,7 +137,7 @@
   .custom-masthead .quick-start-btn:hover {
     transform: translateY(-2px);
     opacity: 0.95;
-    color: #ffffff;
+    color: #ffffff !important;
   }
   
   @media (max-width: 768px) {
