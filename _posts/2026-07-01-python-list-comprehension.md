@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Python'da List Comprehension Ne Zaman Kullanılmalı ve Performans Etkileri Nelerdir?"
 date: 2026-07-01 10:00:00 +0300
 categories: [python]
