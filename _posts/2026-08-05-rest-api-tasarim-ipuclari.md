@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "REST API Tasarım İlkeleri: En İyi Pratikler ve Doğru Kullanım Rehberi"
 date: 2026-08-05 10:00:00 +0300
 categories: [backend]
