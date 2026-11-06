@@ -1,54 +1,71 @@
 ---
-title: "REST API Tasarlarken Dikkat Edilmesi Gereken 5 Nokta"
-date: 2026-08-05
-categories:
-  - backend
-tags:
-  - api
-  - rest
-excerpt: "Sürdürülebilir ve okunabilir bir REST API tasarlamanın pratik kuralları."
+layout: post
+title: "REST API Tasarım İlkeleri: En İyi Pratikler ve Doğru Kullanım Rehberi"
+date: 2026-08-05 10:00:00 +0300
+categories: [backend]
+tags: [rest-api, backend, http, tasarim, best-practices]
+excerpt: "Modern web ve mobil uygulamalar için sürdürülebilir, anlaşılır ve standartlara uygun RESTful API tasarlamanın altın kurallarını keşfedin."
 ---
 
-İyi tasarlanmış bir REST API, hem geliştirici deneyimini hem de bakım maliyetini doğrudan
-etkiler. İşte proje büyüdükçe fark yaratan birkaç kural.
+Günümüz yazılım dünyasında web siteleri, mobil uygulamalar, mikroservisler ve üçüncü taraf entegrasyonlar veri alışverişi için ağırlıklı olarak **REST (Representational State Transfer)** API mimarisini kullanırlar. REST, HTTP protokolünün yeteneklerini maksimum düzeyde kullanan, esnek ve bağımsız bir mimari stildir.
 
-## 1. Kaynak İsimlendirmede Tutarlı Olun
+Ancak her API "RESTful" olduğunu iddia etse de, birçoğu standartlara uymadığı için zamanla bakım edilemez hale gelir. Bu yazımızda, sürdürülebilir ve temiz bir REST API tasarlamak için uymanız gereken temel kuralları ve en iyi pratikleri inceleyeceğiz.
 
-Endpoint'leri her zaman çoğul isimlerle kurun: `/users`, `/orders/123/items` gibi. Fiil
-kullanmaktan kaçının; işlem türünü HTTP metodu zaten belirtir.
+---
 
-## 2. HTTP Durum Kodlarını Doğru Kullanın
+## 1. URI (Endpoint) İsimlendirme Kuralları
 
-- `200` — başarılı GET/PUT
-- `201` — başarılı POST (yeni kaynak oluşturuldu)
-- `204` — başarılı ama gövde dönmeyen işlem (örn. DELETE)
-- `400` — istemci hatası (geçersiz veri)
-- `404` — kaynak bulunamadı
+API uç noktalarınız (`endpoints`), istemcilerin (client) kaynaklara (`resources`) nasıl erişeceğini belirler. İsimlendirme yaparken fiiller yerine **çoğul isimler** kullanılmalıdır.
 
-## 3. Versiyonlama Stratejinizi Baştan Belirleyin
+* **❌ Yanlış Kullanım:** `/getKullanicilar`, `/create-user`, `/deleteUrun/5`
+* **✅ Doğru Kullanım (RESTful):**
+  * `GET /users` (Tüm kullanıcıları getir)
+  * `POST /users` (Yeni kullanıcı oluştur)
+  * `GET /users/5` (ID'si 5 olan kullanıcıyı getir)
+  * `DELETE /users/5` (ID'si 5 olan kullanıcıyı sil)
 
-`/v1/users` gibi URL tabanlı versiyonlama basit ve yaygın bir yaklaşımdır. Header tabanlı
-versiyonlama daha "temiz" sayılsa da debug etmesi daha zordur.
+İlişkisel verilere erişirken alt kaynak (nested resource) yolları tercih edilmelidir:
+* `GET /users/5/orders` (ID'si 5 olan kullanıcının siparişlerini getir)
 
-## 4. Sayfalama (Pagination) Zorunlu Olmalı
+---
 
-Büyük veri setlerini tek seferde dönmek performans sorunlarına yol açar:
+## 2. Doğru HTTP Metotlarının Kullanımı
 
-```
-GET /orders?page=2&limit=50
-```
+HTTP protokolü, her işlemin amacına uygun standart metotlar barındırır. İstek atarken yanlış metot kullanmaktan kaçınılmalıdır:
 
-## 5. Hata Mesajlarını Standartlaştırın
+* **`GET`:** Sunucudan veri okumak (listelemek veya detay çekmek) için kullanılır. Veriyi değiştirmez (safe & idempotent).
+* **`POST`:** Sunucuda yeni bir kaynak oluşturmak için kullanılır.
+* **`PUT`:** Mevcut bir kaynağın **tamamını** güncellemek (veya yoksa oluşturmak) için kullanılır.
+* **`PATCH`:** Mevcut bir kaynağın sadece **belirli alanlarını** kısmi olarak güncellemek için kullanılır.
+* **`DELETE`:** Belirtilen kaynağı sistemden silmek için kullanılır.
 
-Tutarlı bir hata formatı istemci tarafındaki hata yönetimini kolaylaştırır:
+---
 
-```json
-{
-  "error": {
-    "code": "INVALID_INPUT",
-    "message": "email alanı zorunludur"
-  }
-}
-```
+## 3. Anlamlı HTTP Status Kodları Döndürmek
 
-Bu kurallar küçük görünse de, API büyüdükçe tutarsızlıklar teknik borç olarak birikir.
+İstemciye dönen yanıtın başarılı mı yoksa hatalı mı olduğunu anlamak için HTTP durum kodları doğru seçilmelidir:
+
+* **`200 OK`:** İstek başarılı ve sonuç döndürüldü.
+* **`201 Created`:** İstek başarılı ve yeni bir kaynak başarıyla oluşturuldu (Genellikle `POST` isteklerinden sonra döner).
+* **`204 No Content`:** İstek başarılı ancak dönecek bir gövde (`body`) içeriği yok (Genellikle `DELETE` işlemlerinde tercih edilir).
+* **`400 Bad Request`:** Eksik veya hatalı parametre gönderildi (İstemci hatası).
+* **`401 Unauthorized`:** Kimlik doğrulama başarısız veya token geçersiz.
+* **`403 Forbidden`:** Kullanıcının bu kaynağa erişim yetkisi yok.
+* **`404 Not Found`:** Aranan kaynak sunucuda bulunamadı.
+* **`500 Internal Server Error`:** Sunucu tarafında beklenmeyen, kritik bir hata oluştu.
+
+---
+
+## 4. Versiyonlama (Versioning) Stratejisi
+
+API'nizde gelecekte yapacağınız breaking change (geriye dönük uyumsuzluk yaratan) değişiklikler mevcut mobil veya web istemcilerini bozabilir. Bu yüzden API'ler ilk günden itibaren versiyonlanmalıdır:
+
+* **URL Üzerinden Versiyonlama (En Yaygın):** `https://api.ornek.com/v1/users`
+
+---
+
+## Sonuç
+
+İyi tasarlanmış bir REST API; öngörülebilir, dokümante etmesi kolay ve geliştirici dostudur. Standartlara sadık kalmak, uzun vadede entegrasyon maliyetlerini minimuma indirir.
+
+Bir sonraki yazımızda görüşmek üzere!
