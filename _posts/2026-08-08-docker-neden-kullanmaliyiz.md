@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Docker Nedir ve Neden Kullanmalıyız? Konteyner Teknolojisine Giriş"
 date: 2026-08-08 10:00:00 +0300
 categories: [devops]
