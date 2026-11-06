@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Web Güvenliğinde OWASP Top 10 Nedir? En Kritik 5 Güvenlik Açığı"
 date: 2026-08-22 10:00:00 +0300
 categories: [guvenlik]
