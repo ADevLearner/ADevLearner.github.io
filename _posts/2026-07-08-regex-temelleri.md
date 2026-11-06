@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Regex'e Giriş: Karmaşık Görünen Söz Dizimini Çözmek ve Pratik Desenler"
 date: 2026-07-08 10:00:00 +0300
 categories: [programlama]
