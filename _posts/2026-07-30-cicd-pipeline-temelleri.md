@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "CI/CD Pipeline Temelleri: Sürekli Entegrasyon ve Dağıtım Süreçleri Nasıl Kurulur?"
 date: 2026-07-30 10:00:00 +0300
 categories: [devops]
