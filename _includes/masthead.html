@@ -1,40 +1,143 @@
-{% assign locale = include.locale | default: site.locale %}
-{% capture logo_path %}{{ site.logo }}{% endcapture %}
-
-<div class="masthead">
+<div class="custom-masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav" aria-label="Primary navigation">
-        {% unless logo_path == empty %}
-          <a class="site-logo" href="{{ '/' | relative_url }}"><img src="{{ logo_path | relative_url }}" alt="{{ site.masthead_title | default: site.title }}"></a>
-        {% endunless %}
+      <nav id="site-nav" class="greedy-nav">
+        <!-- Site Başlığı ve Logosu -->
         <a class="site-title" href="{{ '/' | relative_url }}">
-          {{ site.masthead_title | default: site.title | escape_once | strip }}
-          {% if site.subtitle %}<span class="site-subtitle">{{ site.subtitle | escape_once | strip }}</span>{% endif %}
+          <span class="logo-icon">&lt;/&gt;</span>
+          <div class="site-title-text">
+            <strong>Kod Notları</strong>
+            <span class="site-subtitle">Yazılım, teknoloji ve geliştirici notları</span>
+          </div>
         </a>
+        
+        <!-- Menü Linkleri -->
         <ul class="visible-links">
-          {%- for link in site.data.navigation.main -%}
-            <li class="masthead__menu-item">
-              <a
-                href="{{ link.url | relative_url }}"
-                {% if link.description %} title="{{ link.description }}"{% endif %}
-                {% if link.target %} target="{{ link.target }}"{% endif %}
-              >{{ link.title }}</a>
-            </li>
-          {%- endfor -%}
+          <li class="masthead__menu-item">
+            <a href="{{ '/' | relative_url }}">Ana Sayfa</a>
+          </li>
+          <li class="masthead__menu-item">
+            <a href="{{ '/categories/' | relative_url }}">Kategoriler</a>
+          </li>
+          <li class="masthead__menu-item">
+            <a href="{{ '/tags/' | relative_url }}">Etiketler</a>
+          </li>
+          <li class="masthead__menu-item">
+            <a href="{{ '/search/' | relative_url }}">Ara</a>
+          </li>
         </ul>
-        {% if site.search == true %}
-        <button class="search__toggle" type="button">
-          <span class="visually-hidden">{{ site.data.ui-text[locale].search_label | default: "Toggle search" }}</span>
-          <i class="fas fa-search"></i>
-        </button>
-        {% endif %}
-        <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">{{ site.data.ui-text[locale].menu_label | default: "Toggle menu" }}</span>
-          <div class="navicon"></div>
-        </button>
-        <ul class="hidden-links hidden"></ul>
+        
+        <!-- Sağ Üst Ekstra Buton / Quick Start -->
+        <div class="header-actions">
+          <a href="https://github.com/ADevLearner/ADevLearner.github.io" target="_blank" class="quick-start-btn">
+            Quick-Start Guide
+          </a>
+        </div>
       </nav>
     </div>
   </div>
 </div>
+
+<style>
+  .custom-masthead {
+    background-color: #0f0f1a;
+    border-bottom: 1px solid rgba(249, 115, 22, 0.2);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .custom-masthead .masthead__inner-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .custom-masthead .greedy-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .custom-masthead .site-title {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    gap: 12px;
+  }
+  
+  .custom-masthead .logo-icon {
+    background: linear-gradient(135deg, #f97316, #fbbf24);
+    color: #0f0f1a;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 14pt;
+    font-family: monospace;
+  }
+  
+  .custom-masthead .site-title-text strong {
+    font-size: 16pt;
+    color: #ffffff;
+    display: block;
+    line-height: 1.2;
+  }
+  
+  .custom-masthead .site-subtitle {
+    font-size: 9pt;
+    color: #94a3b8;
+    display: block;
+  }
+  
+  .custom-masthead .visible-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .custom-masthead .masthead__menu-item a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 11pt;
+    transition: color 0.2s ease;
+  }
+  
+  .custom-masthead .masthead__menu-item a:hover {
+    color: #f97316;
+  }
+  
+  .custom-masthead .quick-start-btn {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 10pt;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .custom-masthead .quick-start-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+    color: #ffffff;
+  }
+  
+  @media (max-width: 768px) {
+    .custom-masthead .greedy-nav {
+      flex-direction: column;
+      gap: 15px;
+      align-items: flex-start;
+    }
+    .custom-masthead .visible-links {
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+  }
+</style>
