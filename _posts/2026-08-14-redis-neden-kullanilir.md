@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Redis Nedir ve Neden Kullanılır? Bellek İçi Veri Depolama Rehberi"
 date: 2026-08-14 10:00:00 +0300
 categories: [backend]
