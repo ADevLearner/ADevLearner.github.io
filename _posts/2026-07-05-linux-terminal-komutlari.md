@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Günlük Geliştirme Süreçlerinde Hayat Kurtaran Linux Terminal Komutları ve Pratikleri"
 date: 2026-07-05 10:00:00 +0300
 categories: [sistem]
