@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Git Versiyon Kontrol Sistemine Giriş: En Çok Kullanılan Temel Komutlar"
 date: 2026-08-01 10:00:00 +0300
 categories: [gelistirme]
