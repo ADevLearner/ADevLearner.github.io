@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Veritabanı İndeksleme (Indexing) Nedir? Performansı Artırma Rehberi"
 date: 2026-07-18 10:00:00 +0300
 categories: [veritabani]
