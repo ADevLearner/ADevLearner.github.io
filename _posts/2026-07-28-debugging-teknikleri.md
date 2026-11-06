@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Etkili Debugging (Hata Ayıklama) Teknikleri: Sorunları Hızla Nasıl Çözersiniz?"
 date: 2026-07-28 10:00:00 +0300
 categories: [gelistirme]
