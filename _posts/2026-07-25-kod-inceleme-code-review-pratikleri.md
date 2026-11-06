@@ -1,42 +1,56 @@
 ---
-title: "Yapıcı Kod İncelemesi (Code Review) İçin 5 Pratik Kural"
-date: 2026-07-25
-categories:
-  - yazılım-pratikleri
-tags:
-  - code-review
-  - takim-calismasi
-excerpt: "Kod incelemesini hem verimli hem de takım moralini koruyacak şekilde yapmanın yolları."
+layout: post
+title: "Etkili Code Review (Kod İnceleme) Nasıl Yapılır? En İyi Pratikler ve Süreçler"
+date: 2026-07-25 10:00:00 +0300
+categories: [gelistirme]
+tags: [code-review, yazilim-kalitesi, ekip-calismasi, best-practices]
+excerpt: "Yazılım ekiplerinde kod kalitesini artıran, hata oranlarını azaltan ve bilgi paylaşımını güçlendiren etkili Code Review pratikleri."
 ---
 
-Kod incelemesi, hataları erken yakalamanın en etkili yollarından biri. Ama yanlış
-yapıldığında hem gereksiz zaman kaybettirir hem de takım içi gerginliğe yol açar.
+Yazılım geliştirme, bireysel bir sanattan ziyade kollektif bir takım oyunudur. Bir geliştirici olarak yazdığınız kod ne kadar kusursuz görünürse görünsün, başka bir gözün o koda dışarıdan bakması her zaman gözden kaçan mantıksal hataları, güvenlik açıklarını veya mimari tutarsızlıkları yakalamak için hayati önem taşır. Bu sürecin adı **Code Review (Kod İnceleme)** yani kısaca CR'dir.
 
-## 1. Kişiyi Değil, Kodu Eleştirin
+Code review, yalnızca "hataları bulup eleştirmek" değildir; aynı zamanda ekip içi bilgi paylaşımını artıran ve kod standartlarını koruyan en güçlü köprüdür. Bu yazımızda, sağlıklı bir code review kültürünün nasıl kurulacağını ve dikkat edilmesi gereken en iyi pratikleri inceleyeceğiz.
 
-"Sen yanlış yapmışsın" yerine "Bu kısım şu şekilde daha güvenli olabilir" demek,
-aynı geri bildirimi çok daha yapıcı bir şekilde iletir.
+---
 
-## 2. Küçük Pull Request'leri Tercih Edin
+## 1. Code Review Sürecinin Temel Amaçları
 
-500 satırlık bir PR'ı dikkatlice incelemek neredeyse imkansızdır. İncelemeyi
-yapan kişi genelde yüzeysel bakıp onaylar. 50-100 satırlık değişiklikler hem
-incelemesi kolay hem de hata bulma ihtimali daha yüksek olur.
+* **Hata Tespiti (Bug Prevention):** Kod üretime (production) çıkmadan önce potansiyel mantık hatalarını veya istisnai durumları yakalamak.
+* **Bilgi Paylaşımı (Knowledge Sharing):** Projenin farklı modüllerinin diğer ekip üyeleri tarafından da tanınmasını sağlamak ve tek bir kişiye bağımlılığı (`bus factor`) azaltmak.
+* **Standartların Korunması:** Ekip tarafından belirlenen kodlama kurallarına (`coding guidelines`) ve mimari desenlere uyulduğundan emin olmak.
 
-## 3. Otomatikleştirilebilecek Şeyleri Tartışmayın
+---
 
-Kod formatlama, noktalama, girinti gibi konular linter ve formatter (Prettier,
-Black gibi) araçlarına bırakılmalı. İnsan gözü mantık hatalarına, edge case'lere
-odaklanmalı.
+## 2. Kod Gönderenler (Author) İçin En İyi Pratikler
 
-## 4. Neden Sorusunu Sorun
+İncelemeye kod gönderen geliştiricinin, inceleme sürecini kolaylaştırmak ve hızlandırmak için dikkat etmesi gereken kurallar vardır:
 
-"Bu satırı sil" demek yerine "Bu kontrol neden gerekli, hangi durumu ele
-alıyor?" diye sormak, hem karşınızdaki kişinin düşünme sürecini ortaya çıkarır
-hem de asıl amacın kaçırılmadığından emin olmanızı sağlar.
+1. **Pull Request (PR) Boyutunu Küçük Tutun:** Yüzlerce dosyayı ve binlerce satırı içeren devasa PR'lar inceleyen kişinin dikkatini dağıtır ve hataların gözden kaçmasına neden olur. İşlevleri küçük parçalara bölerek (`atomic commits`) gönderin.
+2. **PR Açıklamasını Detaylı Yazın:** "Fix bug" gibi yetersiz açıklamalar yerine, yapılan değişikliğin neyi çözdüğünü, hangi senaryolarda test edildiğini açıklayan net özetler yazın.
+3. **Kendi Kodunuzu Önce Siz İnceleyin:** Pull Request açmadan önce kendi kodunuza sanki bir başkasının gözünden bakın; unutulmuş `console.log` ifadelerini veya geçici test kodlarını mutlaka temizleyin.
 
-## 5. Övgüyü de Unutmayın
+---
 
-Sadece hata bulmaya odaklanan bir inceleme süreci yorucu hale gelir. İyi çözülmüş
-bir problemi veya temiz bir yaklaşımı fark edip belirtmek, takımın kod incelemesini
-sadece bir "engel" olarak değil, öğrenme fırsatı olarak görmesini sağlar.
+## 3. Kod İnceleyenler (Reviewer) İçin En İyi Pratikler
+
+Kodu inceleyen meslektaşın yaklaşımı, ekip içi iletişimin ve motivasyonun kalitesini doğrudan etkiler:
+
+1. **Koda Değil, Mantığa Odaklanın:** Noktalama işaretleri veya küçük boşluklar gibi biçimlendirme detaylarına takılmayın; bu tür işler için otomatik formatlayıcılar (`Prettier`, `ESLint`) kullanılmalıdır. Sizin odak noktanız mimari yapı, algoritma doğruluğu ve güvenlik olmalıdır.
+2. **Yapıcı Bir Dil Kullanın:** "Bu kod neden böyle yazılmış, saçma olmuş" demek yerine, *"Şu fonksiyonu şöyle yapsak performans açısından daha avantajlı olabilir mi, ne dersin?"* şeklinde yapıcı ve sorgulayıcı bir üslup benimseyin.
+3. **Sorular Sorun, Emir Vermeyin:** Code review bir dikte etme süreci değildir. Geliştiricinin kendi kararını sorgulamasını ve mantığı kavramasını sağlayacak sorular sorun.
+
+---
+
+## 4. Otomasyonun Gücü (CI/CD Entegrasyonu)
+
+İnsan gücünü rutin kontrollerle harcamamak için Code Review süreci otomasyon araçlarıyla desteklenmelidir:
+* **Linting ve Format Kontrolleri:** Kod repoya gönderildiği anda otomatik olarak stil kurallarını denetleyen CI adımları olmalıdır.
+* **Otomatik Testler:** PR açıldığı an unit testler ve entegrasyon testleri otomatik koşulmalı, testlerden geçmeyen kodlar incelemeye bile alınmamalıdır.
+
+---
+
+## Sonuç
+
+Etkili bir Code Review kültürü; güvene, saygıya ve sürekli öğrenmeye dayanır. Doğru uygulandığında sadece yazılım kalitesini artırmakla kalmaz, aynı zamanda yazılımcıların birlikte büyümesini sağlar.
+
+Bir sonraki yazımızda görüşmek üzere!
