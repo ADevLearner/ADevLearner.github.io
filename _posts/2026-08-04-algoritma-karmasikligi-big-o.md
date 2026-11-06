@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Big O Notasyonu Nedir? Algoritma Karmaşıklığı ve Performans Analizi"
 date: 2026-08-04 10:00:00 +0300
 categories: [algoritma]
