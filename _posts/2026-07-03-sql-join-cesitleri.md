@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "SQL JOIN Çeşitleri: INNER, LEFT, RIGHT ve FULL Farkları ve En İyi Pratikler"
 date: 2026-07-03 10:00:00 +0300
 categories: [veritabani]
