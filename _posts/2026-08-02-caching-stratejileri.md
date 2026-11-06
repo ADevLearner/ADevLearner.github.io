@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Caching (Önbellekleme) Stratejileri: Web Uygulamalarında Hız ve Performans"
 date: 2026-08-02 10:00:00 +0300
 categories: [performans]
