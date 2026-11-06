@@ -1,68 +1,61 @@
 ---
-title: "Big O Notasyonu: Algoritma Karmaşıklığını Anlamak"
-date: 2026-08-04
-categories:
-  - programlama
-tags:
-  - algoritma
-  - big-o
-excerpt: "Kodunuzun veri büyüdükçe nasıl yavaşlayacağını tahmin etmenin standart yolu."
+layout: post
+title: "Big O Notasyonu Nedir? Algoritma Karmaşıklığı ve Performans Analizi"
+date: 2026-08-04 10:00:00 +0300
+categories: [algoritma]
+tags: [big-o, algoritma, performans, veri-yapilari, optimizasyon]
+excerpt: "Yazılım mülakatlarının ve performans optimizasyonunun temeli olan Big O notasyonunu, zaman ve bellek karmaşıklığını örneklerle inceleyin."
 ---
 
-Big O notasyonu, bir algoritmanın girdi büyüdükçe ne kadar yavaşlayacağını
-tanımlayan bir gösterimdir. Kesin çalışma süresini değil, büyüme eğilimini
-ifade eder.
+Yazılım geliştirme sürecinde iki farklı geliştirici aynı problemi çözen iki farklı kod yazabilir; ancak bu kodlardan hangisinin daha "iyi" veya "verimli" olduğunu nasıl anlarız? Bilgisayarın işlemcisi hızlandıkça kodun hızı da artar, peki yazdığımız algoritmanın gerçekten optimize olup olmadığını donanımdan bağımsız nasıl ölçebiliriz?
 
-## O(1) — Sabit Zaman
+İşte bu noktada **Big O Notasyonu (Big O Notation)** devreye girer. Bu yazımızda, algoritma karmaşıklığının ne anlama geldiğini, en sık karşılaşılan Big O türlerini ve kod yazarken dikkat etmemiz gerekenleri inceleyeceğiz.
 
-Girdi boyutundan bağımsız, her zaman aynı sürede çalışır:
+---
 
-```javascript
-function ilkEleman(dizi) {
-  return dizi[0];
-}
+## 1. Big O Notasyonu Nedir?
+
+Big O, matematiksel bir kavram olup, bir algoritmanın çalışma süresinin veya bellek tüketiminin, girdi verisinin boyutu (`n`) büyüdükçe nasıl bir eğriyle arttığını ifade eder. 
+
+* Donanımdan bağımsızdır (İster süper bilgisayarda çalıştırın ister eski bir telefonda, algoritmanın matematiksel büyüme hızı değişmez).
+* Kodun milisaniye cinsinden süresine değil, girdi boyutu arttıkça işlem sayısının nasıl katlandığına odaklanır.
+
+---
+
+## 2. En Sık Karşılaşılan Big O Tipleri
+
+### O(1) - Sabit Zaman (Constant Time)
+Girdi boyutu (`n`) ne kadar büyürse büyüsün, algoritmanın çalışma süresi her zaman sabittir.
+* *Örnek:* Bir dizinin ilk elemanına indis (`index[0]`) ile erişmek.
+
+### O(n) - Doğrusal Zaman (Linear Time)
+Girdi boyutu (`n`) arttıkça, çalışma süresi de tam olarak aynı oranda (doğrusal olarak) artar.
+* *Örnek:* Bir dizinin içinde aranan bir sayıyı bulmak için baştan sona tek tek arama yapmak (`for` döngüsü).
+
+### O(n^2) - Karesel Zaman (Quadratic Time)
+Genellikle iç içe iki döngü (`nested loops`) içeren algoritmalarda görülür. Girdi boyutu arttıkça işlem yükü katlanarak artar. Büyük veri setlerinde performans kabusuna dönüşebilir.
+* *Örnek:* İç içe döngülerle matris karşılaştırmaları veya kabarcık sıralaması (`Bubble Sort`) algoritmaları.
+
+---
+
+## 3. Pratik Örneklerle Zaman Karmaşıklığı
+
+Aşağıdaki iki farklı yaklaşımı inceleyelim:
+
+```python
+# O(n) - Doğrusal arama (Liste uzadıkça işlem süresi artar)
+def eleman_var_mi(liste, hedef):
+    for eleman in liste:
+        if eleman == hedef:
+            return True
+    return False
 ```
+Eğer verileriniz sıralı ise, her seferinde aralığı yarıya bölen Binary Search (İkili Arama) algoritmasını kullanarak karmaşıklığı O(log n) seviyesine indirebilirsiniz. Bu da milyonlarca eleman içinde saniyeler yerine mikro saniyeler içinde sonuca ulaşmanızı sağlar.
 
-## O(n) — Doğrusal Zaman
+## 4. Zaman (Time Complexity) vs Bellek (Space Complexity) Karmaşıklığı
+Algoritma analizi yaparken sadece ne kadar sürede çalıştığına (Time Complexity) değil, çalışırken ne kadar RAM tükettiğine (Space Complexity) de dikkat edilmelidir. Bazı durumlarda hızı artırmak için fazladan bellek harcayabiliriz (Time-Memory Trade-off).
 
-Girdi büyüdükçe süre orantılı olarak artar:
+Sonuç
+Big O notasyonunu bilmek ve kod yazarken karmaşıklığı hesaba katmak, ölçeklenebilir ve yüksek performanslı yazılımlar üretmenin temel anahtarıdır.
 
-```javascript
-function topla(dizi) {
-  let toplam = 0;
-  for (const eleman of dizi) toplam += eleman;
-  return toplam;
-}
-```
-
-## O(n²) — Karesel Zaman
-
-İç içe döngülerde sıkça karşılaşılır, girdi büyüdükçe süre çok hızlı artar:
-
-```javascript
-function tekrarEdenVarMi(dizi) {
-  for (let i = 0; i < dizi.length; i++) {
-    for (let j = i + 1; j < dizi.length; j++) {
-      if (dizi[i] === dizi[j]) return true;
-    }
-  }
-  return false;
-}
-```
-
-1000 elemanlı bir dizide bu yaklaşık 500.000 karşılaştırma yapar; 10.000 elemanlı
-bir dizide bu sayı 50 milyona çıkar.
-
-## O(log n) — Logaritmik Zaman
-
-Binary search gibi, her adımda arama alanını yarıya indiren algoritmalar bu
-kategoriye girer. 1 milyon elemanlı bir dizide bile yalnızca ~20 adımda sonuca
-ulaşılır — bu yüzden sıralı verilerde arama yaparken binary search, doğrusal
-aramaya göre büyük fark yaratır.
-
-## Neden Önemli?
-
-Küçük veri setlerinde O(n²) bir algoritma fark yaratmayabilir, ama veri
-büyüdükçe (binlerce, milyonlarca kayıt) yanlış algoritma seçimi uygulamanızı
-kullanılamaz hale getirebilir. Big O, kod yazarken "bu ölçeklenir mi?" sorusunu
-sormaya teşvik eder.
+Bir sonraki yazımızda görüşmek üzere!
