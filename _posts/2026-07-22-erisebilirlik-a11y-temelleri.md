@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Web Erişilebilirliği (a11y) Nedir? Her Geliştiricinin Bilmesi Gereken Temel Kurallar"
 date: 2026-07-22 10:00:00 +0300
 categories: [frontend]
