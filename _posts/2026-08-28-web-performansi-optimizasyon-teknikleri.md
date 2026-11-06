@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Web Performansını Artırma Yolları: Hızlı ve Optimize Siteler İçin Rehber"
 date: 2026-08-28 10:00:00 +0300
 categories: [performans]
