@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Linux'ta Cron Job ile Zamanlanmış Görevler (Cron Expression) Nasıl Oluşturulur?"
 date: 2026-07-15 10:00:00 +0300
 categories: [sistem]
