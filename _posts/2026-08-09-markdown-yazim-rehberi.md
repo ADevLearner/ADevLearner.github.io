@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Markdown Yazım Rehberi: Hızlı, Temiz ve Etkili Metin Biçimlendirme"
 date: 2026-08-09 10:00:00 +0300
 categories: [araclar]
