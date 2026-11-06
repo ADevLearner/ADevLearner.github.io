@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Stack (Yığın) ve Queue (Kuyruk) Veri Yapıları: Temelleri ve Kullanım Alanları"
 date: 2026-08-06 10:00:00 +0300
 categories: [veri-yapilari]
