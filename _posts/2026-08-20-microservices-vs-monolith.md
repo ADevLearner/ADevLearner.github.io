@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Microservices vs Monolithic Mimari: Hangisini Ne Zaman Tercih Etmeliyiz?"
 date: 2026-08-20 10:00:00 +0300
 categories: [mimari]
