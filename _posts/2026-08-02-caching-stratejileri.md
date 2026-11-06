@@ -1,53 +1,65 @@
 ---
-title: "Caching Stratejileri: Uygulamanızı Nasıl Hızlandırır?"
-date: 2026-08-02
-categories:
-  - backend
-tags:
-  - cache
-  - performans
-excerpt: "Farklı önbellekleme katmanlarının ne zaman ve nasıl kullanılacağına dair pratik bir bakış."
+layout: post
+title: "Caching (Önbellekleme) Stratejileri: Web Uygulamalarında Hız ve Performans"
+date: 2026-08-02 10:00:00 +0300
+categories: [performans]
+tags: [caching, web-performansi, redis, optimizasyon, mimari]
+excerpt: "Web uygulamalarında sunucu yükünü azaltan ve sayfa yüklenme sürelerini milisaniyelere düşüren caching stratejileri rehberi."
 ---
 
-Caching (önbellekleme), sık istenen ama nadiren değişen verileri tekrar tekrar
-hesaplamak yerine hafızada tutmaktır. Doğru uygulandığında performansı ciddi
-şekilde artırır, yanlış uygulandığında ise eski/hatalı veri gösterme riski
-doğurur.
+Yazılım geliştirme dünyasında kullanıcıların en büyük tahammülsüzlüğü yavaş açılan sayfalardır. Bir web sitesi veya API yanıtı 2-3 saniyeden uzun sürdüğünde kullanıcıların büyük kısmı siteyi terk eder. Sunucu kaynaklarını optimize etmek ve yanıt sürelerini hızlandırmak için kullanılan en güçlü mimari yaklaşım **Caching (Önbellekleme)** mekanizmasıdır.
 
-## Tarayıcı Önbelleği
+Bu yazımızda önbelleklemenin temel mantığını, farklı caching katmanlarını, stratejileri ve dikkat edilmesi gereken noktaları inceleyeceğiz.
 
-```
-Cache-Control: max-age=86400
-```
+---
 
-Bu HTTP header'ı, tarayıcının bir kaynağı (görsel, CSS dosyası vb.) 24 saat
-boyunca tekrar sunucudan istemeden yerelden kullanmasını söyler.
+## 1. Caching Nedir ve Neden Hayatidir?
 
-## Sunucu Tarafı Önbellek (Redis örneği)
+Önbellekleme, maliyetli veya uzun süren işlemlerin (örneğin devasa bir veritabanı sorgusu veya uzak bir API isteği) sonuçlarını geçici olarak hızlı erişilebilir bir bellekte (RAM veya hızlı diskler) saklama işlemidir.
 
-Sık sorgulanan ama nadiren değişen veriler (örneğin bir ürün kataloğu) veritabanı
-yerine Redis gibi bellek içi bir veri deposunda tutulabilir:
+* **Performans Artışı:** Veriler doğrudan bellekten çekildiği için milisaniyeler içinde yanıt alınır.
+* **Sunucu Yükünün Azalması:** Aynı veri için binlerce kez veritabanına sorgu atmak yerine önbellekten servis edilir, böylece CPU ve disk I/O yükü minimuma iner.
 
-```javascript
-const cached = await redis.get('urunler');
-if (cached) return JSON.parse(cached);
+---
 
-const urunler = await db.query('SELECT * FROM urunler');
-await redis.set('urunler', JSON.stringify(urunler), 'EX', 3600);
-return urunler;
-```
+## 2. Temel Önbellekleme Katmanları
 
-## Cache Invalidation Sorunu
+Modern web mimarilerinde caching genellikle birden fazla katmanda uygulanır:
 
-Bilgisayar bilimlerinde şaka gibi anlatılan bir söz vardır: "En zor iki şey isim
-koymak ve cache invalidation'dır." Veri değiştiğinde eski cache'in ne zaman ve
-nasıl temizleneceğini planlamak, caching'in en kritik kısmıdır. Yaygın yaklaşımlar:
+### Tarayıcı Önbelleği (Browser Caching)
+Statik dosyaların (görseller, CSS, JavaScript dosyaları) kullanıcının tarayıcısında belirli bir süre (`Cache-Control` başlıkları aracılığıyla) saklanmasını sağlar. Kullanıcı siteyi tekrar ziyaret ettiğinde bu dosyalar sunucudan yeniden indirilmez.
 
-- **TTL (Time To Live):** Belirli bir süre sonra cache otomatik geçersiz olur
-- **Manuel invalidation:** Veri güncellendiğinde ilgili cache anahtarı elle silinir
+### CDN Önbelleği (Content Delivery Network)
+Cloudflare, AWS CloudFront gibi dağıtık ağlar sayesinde statik içerikler kullanıcılara coğrafi olarak en yakın sunucudan servis edilir.
 
-## Ne Zaman Cache'lememeli
+### Sunucu Tarafı Önbelleği (In-Memory Caching)
+Veritabanı sorgularının sonuçlarını veya sık kullanılan verileri **Redis** veya **Memcached** gibi bellek içi (in-memory) veri depolarında saklama yöntemidir.
 
-Sık değişen, kullanıcıya özel (örneğin bakiye bilgisi gibi) veriler için
-caching riskli olabilir — yanlış veya eski veri göstermek, performans
-kazancından çok daha büyük bir sorun yaratır.
+---
+
+## 3. Popüler Önbellekleme Stratejileri
+
+Uygulamanızın gereksinimlerine göre farklı caching stratejileri seçebilirsiniz:
+
+### 1. Cache-Aside (Lazy Loading) Stratejisi
+En yaygın kullanılan yöntemdir. Uygulama önce önbelleğe (`Redis`) bakar:
+* Eğer veri önbellekte varsa (`Cache Hit`) doğrudan döndürülür.
+* Veri yoksa (`Cache Miss`) veritabanından sorgulanır, bulunan sonuç önbelleğe kaydedilir ve kullanıcıya sunulur.
+
+### 2. Write-Through Stratejisi
+Veri güncellendiğinde veya sisteme yeni veri eklendiğinde, hem veritabanı hem de önbellek eş zamanlı olarak güncellenir. Bu sayede önbellekte asla bayat (stale) veri kalmaz.
+
+---
+
+## 4. Önbellekleme Yaparken Dikkat Edilmesi Gerekenler
+
+* **Cache Invalidation (Önbellek Geçersiz Kılma):** "Bilgisayar bilimindeki en zor iki şey: Önbellek geçersiz kılma ve isimlendirme." Veri veritabanında güncellendiğinde, eski önbellek verisinin temizlenmesi (`evict` veya `invalidate`) veya yenilenmesi gerekir; aksi takdirde kullanıcılar güncel olmayan eski verileri görürler.
+* **TTL (Time to Live) Belirleme:** Önbellekte tutulan verilerin ne kadar süreyle saklanacağını belirleyen bir yaşam süresi mutlaka tanımlanmalıdır.
+
+---
+
+## Sonuç
+
+Doğru kurgulanmış bir caching stratejisi, web uygulamalarının ölçeklenebilirliğini ve kullanıcı deneyimini doğrudan yukarı taşıyan en kritik mimari yatırımdır.
+
+Bir sonraki yazımızda görüşmek üzere!
