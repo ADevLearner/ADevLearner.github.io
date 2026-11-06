@@ -120,10 +120,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "ADevLearner"
+  name             : "ALearner"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Yazılım geliştirme ve teknoloji üzerine öğrendiklerimi not ediyorum."
-  location         : "Türkiye"
+  location         : 
   email            :
   # fediverse      : "@you@instance.social"  # used for fediverse:creator meta tag
   links:
