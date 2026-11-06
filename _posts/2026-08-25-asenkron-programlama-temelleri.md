@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Asenkron Programlama Nedir? Async/Await ve Callback Mantığı"
 date: 2026-08-25 10:00:00 +0300
 categories: [yazilim-temelleri]
