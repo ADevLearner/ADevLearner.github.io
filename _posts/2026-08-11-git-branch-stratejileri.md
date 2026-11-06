@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Git Branch (Dal) Stratejileri: Büyük Ekipler İçin Sürdürülebilir Git İş Akışları"
 date: 2026-08-11 10:00:00 +0300
 categories: [gelistirme]
