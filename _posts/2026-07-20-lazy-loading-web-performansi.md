@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Web Performansını Uçuran Strateji: Lazy Loading (Tembel Yükleme) Nedir ve Nasıl Uygulanır?"
 date: 2026-07-20 10:00:00 +0300
 categories: [frontend]
