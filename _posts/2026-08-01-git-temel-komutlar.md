@@ -1,47 +1,87 @@
 ---
-title: "Git ile Çalışırken Bilmeniz Gereken Temel Komutlar"
-date: 2026-08-01
-categories:
-  - araçlar
-tags:
-  - git
-  - versiyon-kontrolu
-excerpt: "Git'e yeni başlayanlar için günlük iş akışında en çok kullanılan komutların derli toplu bir özeti."
+layout: post
+title: "Git Versiyon Kontrol Sistemine Giriş: En Çok Kullanılan Temel Komutlar"
+date: 2026-08-01 10:00:00 +0300
+categories: [gelistirme]
+tags: [git, versiyon-kontrol, github, komutlar, yazilim-gelistirme]
+excerpt: "Yazılım geliştirme süreçlerinin kalbi olan Git versiyon kontrol sisteminin mantığını ve günlük iş akışında en çok kullanılan temel komutları keşfedin."
 ---
 
-Git, yazılım projelerinde versiyon kontrolü için en yaygın kullanılan araç. Bu yazıda
-günlük iş akışında en sık ihtiyaç duyacağınız komutları özetliyorum.
+Yazılım geliştirme dünyasında ister bireysel bir proje üzerinde çalışın ister devasa bir ekibin parçası olun, yazdığınız kodların geçmişini takip edebilmek, hata yaptığınızda eski çalışan sürüme dönebilmek ve başkalarıyla ortak çalışabilmek hayati önem taşır. Bu ihtiyacı kusursuz bir şekilde karşılayan araç **Git** versiyon kontrol sistemidir.
 
-## Temel Komutlar
+Bu yazımızda Git'in temel çalışma mantığını, dosya yaşam döngüsünü ve terminal üzerinden günlük olarak en çok ihtiyaç duyacağınız temel komutları inceleyeceğiz.
 
-- `git status` — çalışma dizinindeki değişiklikleri gösterir
-- `git add <dosya>` — değişiklikleri staging alanına ekler
-- `git commit -m "mesaj"` — değişiklikleri kalıcı hale getirir
-- `git push` — commit'leri uzak repoya gönderir
-- `git pull` — uzak repodaki güncellemeleri çeker
+---
 
-## Branch Yönetimi
+## 1. Git Nedir ve Neden Kullanılmalıdır?
 
-Yeni bir özellik üzerinde çalışırken ana koddan izole bir dal açmak iyi bir pratiktir:
+Git, Linus Torvalds tarafından 2005 yılında geliştirilmiş dağıtık (distributed) bir versiyon kontrol sistemidir. Klasik yöntem olan "proje_v1_son_final.zip" şeklinde klasörler saklamak yerine, projenin her aşamasını ve yapılan her küçük değişikliği güvenli bir şekilde kaydeder.
 
+### Git Kullanmanın Sağladığı Temel Avantajlar:
+* **Zaman Yolculuğu:** Kodunuzun geçmişindeki herhangi bir dakikaya veya güne tek komutla geri dönebilirsiniz.
+* **Takım Çalışması:** Birden fazla geliştiricinin aynı dosya üzerinde birbirlerinin kodunu ezmeden aynı anda çalışmasını sağlar.
+* **Güvenlik ve Yedekleme:** Kodlarınız uzak depolarda (`GitHub`, `GitLab`, `Bitbucket`) güvenle saklanır.
+
+---
+
+## 2. Git Dosya Yaşam Döngüsü (File Lifecycle)
+
+Git ile çalışırken dosyalarınız üç farklı durumda bulunabilir:
+1. **Modified (Değiştirilmiş):** Üzerinde değişiklik yaptığınız ancak henüz Git'e kaydetmediğiniz dosyalar.
+2. **Staged (Aşama Alınmış):** `git add` komutuyla bir sonraki commit için işaretlenmiş dosyalar.
+3. **Committed (Kaydedilmiş):** `git commit` komutuyla kalıcı olarak Git geçmişine işlenmiş dosyalar.
+
+---
+
+## 3. En Çok Kullanılan Temel Git Komutları
+
+Günlük geliştirme döngüsünde en sık kullanılan komutlar ve ne işe yaradıkları şunlardır:
+
+### `git init`
+Mevcut bir klasörü Git tarafından takip edilen bir proje deposu haline getirir.
 ```bash
-git checkout -b yeni-ozellik
+git init
+git status
+```
+Projenizin o anki durumunu gösterir; hangi dosyaların değiştirildiğini, hangilerinin eklendiğini listeler.
+
+```Bash
+git status
+git add
+```
+Değişen dosyaları commit işlemine hazırlamak (staged alanına almak) için kullanılır.
+
+```Bash
+# Sadece belirli bir dosyayı ekleme
+git add index.html
 ```
 
-İşiniz bitince ana dala geri dönüp birleştirebilirsiniz:
+# Değişen tüm dosyaları ekleme
+git add .
+git commit
+İşaretlenen dosyaları anlamlı bir mesajla birlikte kalıcı olarak yerel geçmişe kaydeder.
 
-```bash
-git checkout main
-git merge yeni-ozellik
+```Bash
+git commit -m "Anasayfa tasarımı güncellendi ve hatalar giderildi"
+git push
 ```
+Yerel depoda yaptığınız commit'leri uzak sunucuya (GitHub vb.) gönderir.
 
-## Sık Yapılan Hatalar
-
-Yanlış bir commit mesajı yazdıysanız, henüz push etmediyseniz düzeltmek kolaydır:
-
-```bash
-git commit --amend -m "doğru mesaj"
+```Bash
+git push origin main
+git pull
 ```
+Uzak sunucudaki güncel değişiklikleri yerel bilgisayarınıza çeker ve senkronize eder.
 
-Push ettikten sonra geçmişi değiştirmek takım çalışmasında sorun yaratabilir, bu yüzden
-`--amend` ve `rebase` gibi geçmiş değiştiren komutları paylaşılan branch'lerde dikkatli kullanın.
+```Bash
+git pull origin main
+```
+En İyi Pratikler (Best Practices)
+Anlamlı Commit Mesajları Yazın: "asdf", "update" veya "fix" gibi belirsiz mesajlar yerine, neyin değiştirildiğini özetleyen net mesajlar yazın (Örn: feat: kullanıcı giriş formu eklendi).
+
+Küçük ve Sık Commit'ler Yapın: Gün sonunda tek bir devasa commit atmak yerine, her mantıklı küçük görevi tamamladıkça ayrı commit'ler oluşturun.
+
+Sonuç
+Git bilmek, modern bir yazılımcı için olmazsa olmaz temel bir beceridir. Temel komutları kas hafızanıza kazıdıktan sonra proje yönetimi son derece akıcı hale gelecektir.
+
+Bir sonraki yazımızda görüşmek üzere!
