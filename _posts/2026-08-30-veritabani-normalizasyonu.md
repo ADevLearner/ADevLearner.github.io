@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Veritabanı Normalizasyonu Nedir? 1NF, 2NF ve 3NF Kuralları"
 date: 2026-08-30 10:00:00 +0300
 categories: [veritabani]
