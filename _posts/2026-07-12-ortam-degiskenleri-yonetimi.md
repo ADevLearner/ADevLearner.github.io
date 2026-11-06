@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Ortam Değişkenleri (Environment Variables) Yönetimi ve Güvenlik En İyi Pratikleri"
 date: 2026-07-12 10:00:00 +0300
 categories: [guvenlik]
