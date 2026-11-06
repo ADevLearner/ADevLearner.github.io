@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "Temiz Kod (Clean Code) İlkeleri: Okunabilir ve Sürdürülebilir Kod Nasıl Yazılır?"
 date: 2026-08-10 10:00:00 +0300
 categories: [gelistirme]
