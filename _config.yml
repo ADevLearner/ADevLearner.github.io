@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", "catppuccin_latte", "catppuccin_mocha"
+minimal_mistakes_skin    : "contrast" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise", "catppuccin_latte", "catppuccin_mocha"
 
 # Site Settings
 locale                   : "tr-TR"
@@ -20,7 +20,7 @@ direction                : "ltr" # "ltr" (default), "rtl" # set the direction of
 title                    : "Kod Notları"
 title_separator          : "-"
 subtitle                 : "Yazılım, teknoloji ve geliştirici notları"
-name                     : "ADevLearner"
+name                     : "ALearner"
 description              : "Yazılım geliştirme, teknoloji trendleri ve pratik notlar üzerine bir blog."
 url                      : "https://ADevLearner.github.io" # KULLANICI_ADIN yerine kendi GitHub kullanıcı adını yaz
 baseurl                  : # kök domainde yayınlıyorsan boş bırak
