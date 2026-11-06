@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "JSON vs YAML: Hangisi Neden Tercih Edilmeli? Karşılaştırmalı İnceleme"
 date: 2026-07-10 10:00:00 +0300
 categories: [konfigurasyon]
