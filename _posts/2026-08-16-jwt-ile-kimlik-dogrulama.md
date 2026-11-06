@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title: "JWT (JSON Web Token) Nedir ve Nasıl Çalışır? Güvenli Kimlik Doğrulama Rehberi"
 date: 2026-08-16 10:00:00 +0300
 categories: [guvenlik]
